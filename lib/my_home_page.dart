@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shake/shake.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -51,8 +52,38 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              '흔들어서 카운트를 올려보세요.',
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const RedBox(),
+                Column(
+                  children: [
+                    const RedBox()
+                        .box
+                        .padding(const EdgeInsets.all(30))
+                        .color(Colors.blue)
+                        .make(),
+                    '흔들어서 카운트를 올려보세요.'
+                        .text
+                        .size(20)
+                        .isIntrinsic
+                        .color(Colors.red)
+                        .bold
+                        .white
+                        .black
+                        .make()
+                        .box
+                        .withRounded(value: 50)
+                        .color(Colors.green)
+                        .height(150)
+                        .size(70, 70)
+                        .make()
+                        .pSymmetric(h: 20, v: 50),
+                    const RedBox(),
+                  ],
+                ),
+                const RedBox(),
+              ],
             ),
             Text(
               '$_counter',
@@ -86,5 +117,14 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
         break;
     }
   }
+}
 
+class RedBox extends StatelessWidget {
+  const RedBox({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) =>
+      Container().box.color(Colors.red).size(20, 20).make();
 }
